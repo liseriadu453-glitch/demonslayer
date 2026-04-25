@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candidature Lune Supérieure — Kyoko Furen</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700;900&family=Cinzel+Decorative:wght@400;700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --blood: #8b0000;
+    --crimson: #c0392b;
+    --deep-red: #4a0000;
+    --gold: #c9a84c;
+    --pale-gold: #e8d5a3;
+    --ash: #1a1a1a;
+    --void: #050505;
+    --fog: rgba(255,255,255,0.04);
+    --text: #d4c5b0;
+    --dim: #7a6a5a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--void);
+    color: var(--text);
+    font-family: 'IM Fell English', serif;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--void); }
+  ::-webkit-scrollbar-thumb { background: var(--blood); border-radius: 0; }
+
+  /* ─── CANVAS BACKGROUND ─── */
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(139,0,0,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .moon {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #f5e6c8 0%, #d4b483 40%, #8b5e3c 80%, #3a1a0a 100%);
+    box-shadow:
+      0 0 60px rgba(200,160,80,0.3),
+      0 0 120px rgba(139,0,0,0.15),
+      inset -20px -10px 40px rgba(0,0,0,0.5);
+    animation: moonPulse 6s ease-in-out infinite;
+  }
+
+  .moon::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,160,80,0.2);
+    animation: moonRing 6s ease-in-out infinite;
+  }
+
+  @keyframes moonPulse {
+    0%, 100% { box-shadow: 0 0 60px rgba(200,160,80,0.3), 0 0 120px rgba(139,0,0,0.15), inset -20px -10px 40px rgba(0,0,0,0.5); }
+    50% { box-shadow: 0 0 90px rgba(200,160,80,0.5), 0 0 180px rgba(139,0,0,0.3), inset -20px -10px 40px rgba(0,0,0,0.5); }
+  }
+
+  @keyframes moonRing {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.08); opacity: 0.8; }
+  }
+
+  .kanji-bg {
+    position: absolute;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18rem;
+    font-weight: 900;
+    color: rgba(139,0,0,0.04);
+    letter-spacing: -0.05em;
+    user-select: none;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+
+  .hero-title-wrap {
+    text-align: center;
+    z-index: 2;
+    margin-top: 120px;
+  }
+
+  .hero-sub {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.5s;
+  }
+
+  .hero-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    text-shadow:
+      0 0 40px rgba(200,100,100,0.6),
+      0 0 80px rgba(139,0,0,0.4);
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.8s;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-name span {
+    color: var(--crimson);
+    text-shadow: 0 0 30px rgba(192,57,43,0.8), 0 0 60px rgba(139,0,0,0.5);
+  }
+
+  .hero-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--dim);
+    margin-top: 0.5rem;
+    letter-spacing: 0.8em;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.1s;
+  }
+
+  .hero-role {
+    margin-top: 1.5rem;
+    display: inline-block;
+    border: 1px solid var(--blood);
+    padding: 0.5rem 2.5rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.4s;
+  }
+
+  .hero-role::before, .hero-role::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    border: 1px solid var(--gold);
+  }
+  .hero-role::before { top: -4px; left: -4px; border-right: none; border-bottom: none; }
+  .hero-role::after { bottom: -4px; right: -4px; border-left: none; border-top: none; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 2s;
+  }
+
+  .scroll-hint span {
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--blood), transparent);
+    animation: scrollDrop 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollDrop {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0 auto 3rem;
+    max-width: 600px;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--blood), transparent);
+  }
+
+  .divider-glyph {
+    color: var(--gold);
+    font-size: 1rem;
+    font-family: 'Noto Serif JP', serif;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.6em;
+    color: var(--crimson);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--deep-red);
+    max-width: 80px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .section-title em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* ─── IDENTITY CARD ─── */
+  .identity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--deep-red);
+    border: 1px solid var(--blood);
+    margin-bottom: 3rem;
+  }
+
+  .identity-cell {
+    background: var(--ash);
+    padding: 1.5rem 2rem;
+    position: relative;
+  }
+
+  .identity-cell.full { grid-column: 1 / -1; }
+
+  .identity-cell::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--blood);
+  }
+
+  .id-label {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.5em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .id-value {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .id-value.highlight {
+    color: var(--crimson);
+    font-size: 1.2rem;
+  }
+
+  .id-value.normal {
+    font-family: 'IM Fell English', serif;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  /* ─── LORE TEXT ─── */
+  .lore-text {
+    line-height: 2;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+
+  .lore-text em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .lore-text strong {
+    color: var(--crimson);
+    font-style: normal;
+  }
+
+  /* ─── DROP CAP ─── */
+  .drop-cap::first-letter {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    float: left;
+    line-height: 0.75;
+    margin: 0.1em 0.12em 0 0;
+    color: var(--crimson);
+    text-shadow: 0 0 20px rgba(192,57,43,0.5);
+  }
+
+  /* ─── BLOOD PACT BOX ─── */
+  .pact-box {
+    border: 1px solid var(--blood);
+    background: linear-gradient(135deg, rgba(74,0,0,0.3) 0%, rgba(26,26,26,0.8) 100%);
+    padding: 2.5rem 3rem;
+    margin: 2rem 0;
+    position: relative;
+  }
+
+  .pact-box::before {
+    content: '血契約';
+    position: absolute;
+    top: -0.7rem;
+    left: 2rem;
+    background: var(--void);
+    padding: 0 1rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    color: var(--blood);
+    text-transform: uppercase;
+  }
+
+  .pact-box .pact-quote {
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.9;
+    color: var(--pale-gold);
+    text-align: center;
+  }
+
+  /* ─── ABILITY CARDS ─── */
+  .abilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .ability-card {
+    background: var(--ash);
+    border: 1px solid #2a1a1a;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .ability-card:hover {
+    border-color: var(--blood);
+    transform: translateY(-4px);
+  }
+
+  .ability-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(to right, var(--blood), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .ability-card:hover::after { transform: scaleX(1); }
+
+  .ability-icon {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .ability-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .ability-desc {
+    font-size: 0.9rem;
+    color: var(--dim);
+    line-height: 1.7;
+  }
+
+  /* ─── MOTIVATION BLOCKS ─── */
+  .motiv-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .motiv-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .motiv-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2rem;
+    color: var(--deep-red);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2rem;
+    text-align: center;
+    opacity: 0.5;
+  }
+
+  .motiv-content h4 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  .motiv-content p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--dim);
+  }
+
+  /* ─── OATH SECTION ─── */
+  .oath-section {
+    text-align: center;
+    padding: 8rem 2rem;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid #1a0000;
+    border-bottom: 1px solid #1a0000;
+  }
+
+  .oath-text {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    color: var(--crimson);
+    line-height: 2;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    text-shadow: 0 0 30px rgba(139,0,0,0.4);
+  }
+
+  .oath-kanji {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--blood);
+    letter-spacing: 0.5em;
+    display: block;
+    margin-top: 2rem;
+    opacity: 0.6;
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    z-index: 1;
+    position: relative;
+    border-top: 1px solid #111;
+  }
+
+  .footer p {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--dim);
+    text-transform: uppercase;
+    font-family: 'Noto Serif JP', serif;
+  }
+
+  .footer .mark {
+    color: var(--blood);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+  }
+
+  nav a {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  nav a::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--dim);
+    transition: width 0.3s ease, background 0.3s ease;
+  }
+
+  nav a:hover { color: var(--gold); }
+  nav a:hover::before { width: 35px; background: var(--gold); }
+
+  /* ─── BLOOD DRIP SVG ─── */
+  .blood-drip-container {
+    position: relative;
+    height: 80px;
+    overflow: visible;
+    margin-bottom: -1px;
+  }
+
+  /* ─── SEPARATOR ─── */
+  .sep {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0 3rem;
+    color: var(--blood);
+    font-size: 0.7rem;
+    letter-spacing: 0.5em;
+    font-family: 'Noto Serif JP', serif;
+  }
+
+  .sep::before, .sep::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--deep-red));
+  }
+
+  .sep::after { background: linear-gradient(to left, transparent, var(--deep-red)); }
+
+  /* ─── RANK BADGE ─── */
+  .rank-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--gold);
+    padding: 1.5rem 3rem;
+    margin: 2rem auto;
+    position: relative;
+    background: rgba(201,168,76,0.05);
+  }
+
+  .rank-badge::before, .rank-badge::after {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+    border: 2px solid var(--gold);
+  }
+
+  .rank-badge::before { top: -6px; left: -6px; border-right: none; border-bottom: none; }
+  .rank-badge::after { bottom: -6px; right: -6px; border-left: none; border-top: none; }
+
+  .rank-badge .rank-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(201,168,76,0.4);
+  }
+
+  .rank-badge .rank-label {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* ─── BLOOD PARTICLES ─── */
+  .particle {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: var(--blood);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    animation: particleFade 1s ease forwards;
+  }
+
+  @keyframes particleFade {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0) translateY(20px); }
+  }
+
+  /* ─── REVEAL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 600px) {
+    .identity-grid { grid-template-columns: 1fr; }
+    nav { display: none; }
+    .drop-cap::first-letter { font-size: 3rem; }
+    .pact-box { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CANVAS BACKGROUND -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#identite">Identité</a>
+  <a href="#origine">Origine</a>
+  <a href="#pact">Pacte de Sang</a>
+  <a href="#pouvoir">Pouvoirs</a>
+  <a href="#candidature">Candidature</a>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="kanji-bg">鬼</div>
+  <div class="moon"></div>
+
+  <div class="hero-title-wrap">
+    <p class="hero-sub">Candidature — Lune Supérieure</p>
+    <h1 class="hero-name">Kyoko <span>Furen</span></h1>
+    <p class="hero-jp">古連　響子</p>
+    <div class="hero-role">Démon — Servante de Muzan Kibutsuji</div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Descendre</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════ IDENTITÉ ══════════════ -->
+<section class="section reveal" id="identite">
+  <div class="section-label">01 — Fiche Personnage</div>
+  <h2 class="section-title">Identité de <em>Kyoko Furen</em></h2>
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">鬼</div><div class="divider-line"></div></div>
+
+  <div class="identity-grid">
+    <div class="identity-cell">
+      <div class="id-label">Nom complet</div>
+      <div class="id-value">Kyoko Furen</div>
+    </div>
+    <div class="identity-cell">
+      <div class="id-label">Nom en japonais</div>
+      <div class="id-value">古連　響子</div>
+    </div>
+    <div class="identity-cell">
+      <div class="id-label">Âge apparent</div>
+      <div class="id-value normal">19 ans</div>
+    </div>
+    <div class="identity-cell">
+      <div class="id-label">Âge réel</div>
+      <div class="id-value normal">312 ans</div>
+    </div>
+    <div class="identity-cell">
+      <div class="id-label">Genre</div>
+      <div class="id-value normal">Féminin</div>
+    </div>
+    <div class="identity-cell">
+      <div class="id-label">Race</div>
+      <div class="id-value highlight">Démon</div>
+    </div>
+    <div class="identity-cell">
+      <div class="id-label">Rang Actuel</div>
+      <div class="id-value normal">???</div>
+    </div>
+    <div class="identity-cell">
+      <div class="id-label">Rang Postulé</div>
+      <div class="id-value highlight">Lune Supérieure</div>
+    </div>
+    <div class="identity-cell full">
+      <div class="id-label">Appartenance</div>
+      <div class="id-value normal">Douze Lunes Démoniaques — sous l'autorité directe de Muzan Kibutsuji</div>
+    </div>
+    <div class="identity-cell">
+      <div class="id-label">Technique de Souffle</div>
+      <div class="id-value normal">Néant (Art du Sang)</div>
+    </div>
+    <div class="identity-cell">
+      <div class="id-label">Particularité</div>
+      <div class="id-value normal">Lié par un Pacte de Sang Éternel à Muzan</div>
+    </div>
+  </div>
+
+  <div class="pact-box">
+    <p class="pact-quote">
+      « Elle ne respire plus, ne vieillit plus, n'aime plus —<br>
+      mais elle <em>ressent</em>. Et dans ce ressenti demeure sa plus grande force… et sa plus grande faiblesse. »
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════ ORIGINE ══════════════ -->
+<section class="section reveal" id="origine">
+  <div class="section-label">02 — Histoire & Origine</div>
+  <h2 class="section-title">La Naissance d'une <em>Ombre</em></h2>
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">血</div><div class="divider-line"></div></div>
+
+  <p class="lore-text drop-cap">
+    L'an 1712. Dans le village de <em>Kurohana</em>, niché entre deux montagnes oubliées des dieux, vivait une jeune femme
+    nommée Kyoko, fille d'un maître tisserand et d'une guérisseuse réputée pour ses simples et ses onguents.
+    Elle était belle d'une beauté inquiétante — des yeux trop sombres pour la saison, une voix trop posée pour son âge —
+    et l'on murmurait qu'elle percevait des choses que les autres ne voyaient pas.
+  </p>
+
+  <p class="lore-text">
+    Elle avait <strong>dix-neuf ans</strong> lorsque la catastrophe frappa. Une épidémie ravagea Kurohana en l'espace d'une nuit.
+    Ses parents. Ses voisins. Ses amis. L'un après l'autre, ils s'éteignirent comme des bougies sous la pluie.
+    Kyoko, elle, survécut — sans comprendre pourquoi. Elle erra seule parmi les corps, hantée par une question
+    à laquelle le ciel refusait de répondre : <em>pourquoi elle, et pas eux ?</em>
+  </p>
+
+  <p class="lore-text">
+    C'est dans cette désolation que <strong>Muzan Kibutsuji</strong> la trouva. Il n'avait pas l'air d'un monstre.
+    Il se présenta comme un médecin voyageur, lui offrit de l'eau, un peu de chaleur, et la promesse d'une réponse.
+    <em>« Je peux te donner la force de ne plus jamais perdre quelqu'un. Plus jamais. »</em>
+    Kyoko, brisée jusqu'à l'os, n'eut pas la force de refuser. Elle n'en avait, en vérité, aucune envie.
+  </p>
+
+  <p class="lore-text">
+    Ce soir-là, sous la lune pleine qui rougissait comme une blessure ouverte, <strong>Kyoko cessa d'être humaine.</strong>
+    Elle devint démon. Et avec cette transformation naquit un autre nom : <em>Furen</em> — « l'écho de la foudre ancienne ».
+  </p>
+</section>
+
+<!-- ══════════════ PACTE DE SANG ══════════════ -->
+<section class="section reveal" id="pact">
+  <div class="section-label">03 — Le Pacte de Sang</div>
+  <h2 class="section-title">La <em>Communion</em> Éternelle</h2>
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">約</div><div class="divider-line"></div></div>
+
+  <p class="lore-text drop-cap">
+    Contrairement à la simple transformation par le sang de Muzan, le <strong>Pacte de Sang</strong> que porte Kyoko est d'une nature
+    tout à fait distincte et d'une rareté extrême. Il ne se conclut pas par la force ni par la ruse, mais par un acte
+    de volonté absolue des deux partis. Muzan n'a jamais fait cela qu'une seule fois. Avec elle.
+  </p>
+
+  <p class="lore-text">
+    La nuit de sa transformation, Kyoko refusa de boire passivement. Elle saisit le poignet de Muzan et porta la blessure
+    à ses propres lèvres un geste que lui-même n'avait pas anticipé. Ce n'était pas de la soumission. C'était un
+    <em>échange</em>. Son sang à elle, pauvre d'un corps à l'agonie, se mêla au sien dans une réciprocité que les anciens
+    textes démoniaques nomment <strong>« Kessho-mei »</strong> — le Serment Cristallisé.
+  </p>
+
+  <div class="pact-box">
+    <p class="pact-quote">
+      « Je ne t'appartiens pas, Muzan Kibutsuji.<br>
+      Je me suis donnée à la nuit elle-même,<br>
+      et tu n'es que son plus beau serviteur.<br><br>
+      <em>Faisons-en autant ensemble.</em> »
+    </p>
+  </div>
+
+  <p class="lore-text">
+    Ce pacte eut trois conséquences irréversibles. Première : <strong>Kyoko ne peut pas être tuée par le sang de Muzan</strong> —
+    celui-ci coule déjà en elle d'une façon plus profonde qu'une simple mutation. Deuxième : elle perçoit, comme un fil
+    invisible, la présence émotionnelle de son seigneur — non pas ses pensées, mais ses <em>intentions</em>. Troisième, et plus
+    troublante : <strong>Muzan ne peut la réabsorber.</strong> Elle est à lui, mais elle lui échappe partiellement, comme une ombre
+    projetée sur un miroir brisé.
+  </p>
+
+  <p class="lore-text">
+    Ce pacte est à la fois sa protection et sa prison. Il lui confère une loyauté indéfectible — non par peur,
+    mais parce que leurs sangs ont fait <em>serment</em>. Elle ne désobéirait pas à Muzan pour la même raison qu'elle ne
+    s'arracherait pas le cœur : ils sont, d'une certaine façon, <strong>devenus une seule créature aux deux visages.</strong>
+  </p>
+</section>
+
+<!-- ══════════════ POUVOIRS ══════════════ -->
+<section class="section reveal" id="pouvoir">
+  <div class="section-label">04 — Capacités & Pouvoirs</div>
+  <h2 class="section-title">L'Arsenal d'une <em>Lune</em></h2>
+  <div class="sep">▲</div>
+
+  <p class="lore-text">
+    Trois siècles passés à dévorer, à combattre, à survivre ont sculpté Kyoko Furen en quelque chose
+    d'effroyablement précis. Ses pouvoirs ne sont pas le fruit du hasard — ils sont l'expression directe
+    de ce qu'elle a <em>voulu devenir</em>.
+  </p>
+
+  <div class="abilities-grid">
+    <div class="ability-card">
+      <span class="ability-icon">🩸</span>
+      <div class="ability-name">Art du Sang — Filament Écarlate</div>
+      <div class="ability-desc">Kyoko peut solidifier son propre sang en filaments tranchants d'une précision chirurgicale. Ces fils peuvent ligotter, trancher ou former des barrières. Plus elle saigne, plus leur tranchant augmente.</div>
+    </div>
+    <div class="ability-card">
+      <span class="ability-icon">🌑</span>
+      <div class="ability-name">Voile d'Ombre — Absence</div>
+      <div class="ability-desc">Elle peut projeter une obscurité absolue dans un rayon de 30 mètres, étouffant toute source de lumière et désactivant la perception visuelle des chasseurs — mais aussi la sienne, ce qui l'oblige à combattre par d'autres sens.</div>
+    </div>
+    <div class="ability-card">
+      <span class="ability-icon">🔮</span>
+      <div class="ability-name">Résonance du Pacte</div>
+      <div class="ability-desc">Par la connexion du Kessho-mei, elle perçoit les intentions hostiles dans un espace rapproché. Ce n'est pas de la télépathie, mais une lecture des micro-variations émotionnelles dans l'air — comme sentir une tempête avant qu'elle éclate.</div>
+    </div>
+    <div class="ability-card">
+      <span class="ability-icon">🌿</span>
+      <div class="ability-name">Régénération Amplifiée</div>
+      <div class="ability-desc">Du fait du Pacte, son sang de Muzan est plus profondément intégré que chez la plupart des démons. Sa régénération est de 40% plus rapide qu'une Lune Inférieure standard, approchant les cadences observées chez les Lunes Supérieures de rang moyen.</div>
+    </div>
+    <div class="ability-card">
+      <span class="ability-icon">⚡</span>
+      <div class="ability-name">Écho de la Foudre</div>
+      <div class="ability-desc">Pouvoir hérité de son ancien nom démoniaque — Furen — elle peut canaliser une impulsion électrique biologique dans ses filaments de sang, les transformant en conducteurs foudroyants d'une portée courte mais létale.</div>
+    </div>
+    <div class="ability-card">
+      <span class="ability-icon">👁</span>
+      <div class="ability-name">Mémoire Démonique Totale</div>
+      <div class="ability-desc">312 ans de combats, de techniques d'observation et d'apprentissage forcé lui ont conféré un catalogue mental des styles de combat humains et démoniaques. Elle reconnaît les patterns d'attaque en quelques échanges.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CANDIDATURE ══════════════ -->
+<section class="section reveal" id="candidature">
+  <div class="section-label">05 — Candidature</div>
+  <h2 class="section-title">Pourquoi <em>Lune Supérieure</em> ?</h2>
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">月</div><div class="divider-line"></div></div>
+
+  <div style="display:flex; justify-content:center; margin-bottom: 2rem;">
+    <div class="rank-badge">
+      <span class="rank-num">上</span>
+      <span class="rank-label">Lune Supérieure — Rang Postulé</span>
+    </div>
+  </div>
+
+  <p class="lore-text drop-cap">
+    Ce n'est pas l'ambition qui me pousse. L'ambition est une émotion humaine, et je ne suis plus humaine depuis
+    trois siècles. Ce qui me pousse, c'est quelque chose de plus froid et de plus vrai : la <strong>nécessité</strong>.
+    Je suis ce que Muzan Kibutsuji a fait de mieux — non par orgueil, mais par simple arithmétique.
+    Et ce qu'il a fait de mieux ne devrait pas rester en dessous.
+  </p>
+
+  <ul class="motiv-list">
+    <li class="motiv-item">
+      <span class="motiv-num">I</span>
+      <div class="motiv-content">
+        <h4>Servir avec plus d'efficacité</h4>
+        <p>En tant que Lune Inférieure, mes capacités sont bridées par un manque de ressources, d'informations et de liberté d'action. Accéder au rang de Lune Supérieure me permettrait d'exécuter la volonté de Muzan Kibutsuji avec une précision et une portée sans comparaison. Je ne veux pas le pouvoir — je veux l'outil.</p>
+      </div>
+    </li>
+    <li class="motiv-item">
+      <span class="motiv-num">II</span>
+      <div class="motiv-content">
+        <h4>La légitimité du Pacte mérite d'être reconnue</h4>
+        <p>Le Kessho-mei n'est pas une vantardise. Il est une réalité biologique et spirituelle unique. Il serait illogique que l'être le plus profondément lié à notre Seigneur occupe un rang subalterne. Ce n'est pas une demande de faveur — c'est une cohérence.</p>
+      </div>
+    </li>
+    <li class="motiv-item">
+      <span class="motiv-num">III</span>
+      <div class="motiv-content">
+        <h4>Un modèle pour les démons qui servent vraiment</h4>
+        <p>Parmi les rangs inférieurs, beaucoup servent par peur. Je veux incarner quelque chose d'autre : la servitude choisie, l'engagement absolu sans contrainte. Si ma promotion peut inspirer d'autres démons à dépasser la soumission pour atteindre la dévotion, alors elle a une valeur au-delà de moi-même.</p>
+      </div>
+    </li>
+    <li class="motiv-item">
+      <span class="motiv-num">IV</span>
+      <div class="motiv-content">
+        <h4>Incarner le rôle avec sérieux</h4>
+        <p>Sur le plan du jeu de rôle, je m'engage à construire un personnage riche, cohérent, et présent — que ce soit dans les interactions avec d'autres démons, les conflits avec les pourfendeurs, ou les scènes narratives. Kyoko Furen n'est pas un personnage de puissance brute, mais de <em>profondeur</em> et de <em>complexité morale</em>.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ══════════════ SERMENT ══════════════ -->
+<div class="oath-section reveal">
+  <p class="oath-text">
+    « Je ne cherche pas la lumière.<br>
+    Je ne fuis pas les ténèbres.<br>
+    Je suis l'espace entre les deux —<br>
+    <em>le seuil que l'on ne franchit qu'une seule fois.</em> »
+  </p>
+  <span class="oath-kanji">永遠の誓い</span>
+  <p style="margin-top: 1.5rem; font-size: 0.7rem; letter-spacing: 0.4em; color: var(--dim); font-family: 'Noto Serif JP', serif; text-transform: uppercase;">Serment Éternel — Kyoko Furen</p>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <span class="mark">鬼</span>
+  <p>Candidature Lune Supérieure · Demon Slayer RP · Serveur GMOD</p>
+  <p style="margin-top: 0.5rem; color: #3a2a2a;">Kyoko Furen — 古連響子 — 312 ans de dévotion</p>
+</footer>
+
+<script>
+// ─── CANVAS BACKGROUND (étoiles + particules démoniaques) ───
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [], floaters = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < 200; i++) {
+    stars.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.2 + 0.2,
+      a: Math.random(),
+      speed: Math.random() * 0.005 + 0.001
+    });
+  }
+  floaters = [];
+  for (let i = 0; i < 8; i++) {
+    floaters.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vy: -(Math.random() * 0.3 + 0.1),
+      vx: (Math.random() - 0.5) * 0.15,
+      r: Math.random() * 2 + 1,
+      a: Math.random() * 0.4 + 0.1,
+      life: 0,
+      maxLife: Math.random() * 300 + 200
+    });
+  }
+}
+
+function drawFrame() {
+  ctx.clearRect(0, 0, W, H);
+
+  stars.forEach(s => {
+    s.a += s.speed;
+    const alpha = (Math.sin(s.a) + 1) / 2 * 0.7 + 0.1;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, 220, 180, ${alpha})`;
+    ctx.fill();
+  });
+
+  floaters.forEach((f, i) => {
+    f.life++;
+    f.x += f.vx;
+    f.y += f.vy;
+    const lifeRatio = f.life / f.maxLife;
+    const alpha = f.a * Math.sin(lifeRatio * Math.PI);
+    ctx.beginPath();
+    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(139, 0, 0, ${alpha})`;
+    ctx.fill();
+    if (f.life >= f.maxLife) {
+      floaters[i] = {
+        x: Math.random() * W, y: H + 10,
+        vy: -(Math.random() * 0.3 + 0.1),
+        vx: (Math.random() - 0.5) * 0.15,
+        r: Math.random() * 2 + 1,
+        a: Math.random() * 0.4 + 0.1,
+        life: 0, maxLife: Math.random() * 300 + 200
+      };
+    }
+  });
+
+  requestAnimationFrame(drawFrame);
+}
+
+resize();
+initStars();
+drawFrame();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+// ─── BLOOD PARTICLES ON CLICK ───
+document.addEventListener('click', e => {
+  for (let i = 0; i < 6; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'particle';
+    dot.style.left = e.clientX + (Math.random() - 0.5) * 20 + 'px';
+    dot.style.top = e.clientY + (Math.random() - 0.5) * 20 + 'px';
+    dot.style.width = dot.style.height = (Math.random() * 4 + 2) + 'px';
+    document.body.appendChild(dot);
+    setTimeout(() => dot.remove(), 1000);
+  }
+});
+
+// ─── SCROLL REVEAL ───
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
