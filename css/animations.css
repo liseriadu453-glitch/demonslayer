@@ -1,0 +1,302 @@
+/* ============================================
+   ANIMATIONS — EMPIRE RP
+   ============================================ */
+
+/* Hyperdrive Intro */
+@keyframes hyperText {
+    0% { opacity: 0; transform: scale(0.3); filter: blur(20px); }
+    30% { opacity: 1; transform: scale(1.05); filter: blur(0); }
+    70% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(2); filter: blur(10px); }
+}
+
+@keyframes hyperLine {
+    0% { box-shadow: none; }
+    50% {
+        box-shadow:
+            -200px -100px 0 1px rgba(255,255,255,0.8),
+            150px -200px 0 0.5px rgba(255,255,255,0.6),
+            -300px 50px 0 1px rgba(255,255,255,0.7),
+            200px 150px 0 0.5px rgba(255,255,255,0.5),
+            -100px 200px 0 1px rgba(255,255,255,0.6);
+    }
+    100% {
+        box-shadow:
+            -2000px -1000px 0 1px rgba(255,255,255,0),
+            1500px -2000px 0 0.5px rgba(255,255,255,0),
+            -3000px 500px 0 1px rgba(255,255,255,0),
+            2000px 1500px 0 0.5px rgba(255,255,255,0),
+            -1000px 2000px 0 1px rgba(255,255,255,0);
+    }
+}
+
+/* Logo Pulse */
+@keyframes logoPulse {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
+}
+
+/* Nav Scan Line */
+@keyframes scanLine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* CTA Pulse */
+@keyframes ctaPulse {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0; transform: scale(1.15); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
+/* Button Glow */
+@keyframes btnGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(255, 26, 26, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(255, 26, 26, 0.5), 0 0 40px rgba(255, 26, 26, 0.2); }
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Title Reveal */
+@keyframes titleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(40px) skewY(2deg);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) skewY(0);
+        filter: blur(0);
+    }
+}
+
+/* Ring Rotate */
+@keyframes ringRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Core Pulse */
+@keyframes corePulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Scroll Pulse */
+@keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+}
+
+/* Hex Pulse */
+@keyframes hexPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Grid Move */
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 60px 60px; }
+}
+
+/* Step Fade In */
+@keyframes stepFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Success Reveal */
+@keyframes successReveal {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Success Pulse */
+@keyframes successPulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+/* Data AOS (Animate On Scroll) */
+[data-aos] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-aos].visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Glitch Effect for text hover */
+.glitch-hover {
+    position: relative;
+}
+
+.glitch-hover:hover {
+    animation: glitch 0.3s ease;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* Floating particles */
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-20px) translateX(10px); }
+    50% { transform: translateY(-10px) translateX(-10px); }
+    75% { transform: translateY(-30px) translateX(5px); }
+}
+
+/* Scan effect for cards */
+.rank-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(255, 26, 26, 0.03) 50%,
+        transparent 100%
+    );
+    transition: top 0.6s ease;
+    pointer-events: none;
+}
+
+.rank-card:hover::after {
+    top: 100%;
+}
+
+/* Typing cursor effect */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Particle Float */
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Holographic flicker */
+@keyframes holoFlicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.4; }
+    94% { opacity: 1; }
+    96% { opacity: 0.7; }
+    97% { opacity: 1; }
+}
+
+/* Nav link hover effect */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 26, 26, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 4px;
+}
+
+.nav-link:hover::before {
+    opacity: 1;
+}
+
+/* Stat cards — no continuous animation for performance */
+
+/* Imperial Data Stream Effect (background) */
+@keyframes dataStream {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+}
+
+/* Pulsing border for featured card */
+.rank-card.featured {
+    animation: featuredPulse 3s ease-in-out infinite;
+}
+
+@keyframes featuredPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 26, 26, 0.1); }
+    50% { box-shadow: 0 0 30px 0 rgba(255, 26, 26, 0.15); }
+}
+
+/* Lightsaber line animation */
+@keyframes lightsaber {
+    0% { width: 0; opacity: 0; }
+    50% { width: 100%; opacity: 1; }
+    100% { width: 0; opacity: 0; left: 100%; }
+}
+
+/* CTA glow — static for performance */
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 26, 26, 0.05), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Stagger children animation */
+.ranks-grid .rank-card:nth-child(1) { transition-delay: 0.1s; }
+.ranks-grid .rank-card:nth-child(2) { transition-delay: 0.2s; }
+.ranks-grid .rank-card:nth-child(3) { transition-delay: 0.3s; }
+
+.values-grid .value-card:nth-child(1) { transition-delay: 0.1s; }
+.values-grid .value-card:nth-child(2) { transition-delay: 0.2s; }
+.values-grid .value-card:nth-child(3) { transition-delay: 0.3s; }
+.values-grid .value-card:nth-child(4) { transition-delay: 0.4s; }
+
+/* Timeline stagger */
+.timeline-item:nth-child(2) { transition-delay: 0.1s; }
+.timeline-item:nth-child(3) { transition-delay: 0.2s; }
+.timeline-item:nth-child(4) { transition-delay: 0.3s; }
+.timeline-item:nth-child(5) { transition-delay: 0.4s; }

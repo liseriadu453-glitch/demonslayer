@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Candidature Staff — Empire RP</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Starfield Background -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Hyperdrive Overlay (on load) -->
+    <div class="hyperdrive-overlay" id="hyperdrive">
+        <div class="hyperdrive-lines"></div>
+        <div class="hyperdrive-text">EMPIRE RP</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-hologram" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-hex">
+                    <svg viewBox="0 0 60 60" class="imperial-logo">
+                        <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                        <line x1="30" y1="2" x2="30" y2="22" stroke="currentColor" stroke-width="2"/>
+                        <line x1="30" y1="38" x2="30" y2="58" stroke="currentColor" stroke-width="2"/>
+                        <line x1="2" y1="30" x2="22" y2="30" stroke="currentColor" stroke-width="2"/>
+                        <line x1="38" y1="30" x2="58" y2="30" stroke="currentColor" stroke-width="2"/>
+                        <line x1="10" y1="10" x2="22" y2="22" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="38" y1="38" x2="50" y2="50" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="50" y1="10" x2="38" y2="22" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="22" y1="38" x2="10" y2="50" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <span class="logo-text">EMPIRE <span class="rp-accent">RP</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active" data-text="ACCUEIL">
+                    <span class="link-inner">ACCUEIL</span>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="candidature.html" class="nav-link cta-link" data-text="MA CANDIDATURE">
+                    <span class="link-inner">MA CANDIDATURE</span>
+                    <div class="link-glow"></div>
+                    <div class="cta-pulse"></div>
+                </a>
+            </div>
+            <div class="nav-burger" id="burger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="nav-scan-line"></div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="mobile-link active">ACCUEIL</a>
+        <a href="candidature.html" class="mobile-link">MA CANDIDATURE</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-line"></span>
+                <span class="badge-text">CANDIDATURE STAFF — EMPIRE RP</span>
+                <span class="badge-line"></span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line" data-delay="0">JE SUIS</span>
+                <span class="title-line accent" data-delay="1">LISERIA</span>
+                <span class="title-line" data-delay="2">FUTUR STAFF</span>
+            </h1>
+            <p class="hero-subtitle">Passionné par Star Wars et le RP, je souhaite rejoindre l'équipe staff d'Empire RP pour contribuer à la meilleure expérience galactique possible.</p>
+            <div class="hero-actions">
+                <a href="candidature.html" class="btn-imperial">
+                    <span class="btn-text">VOIR MA CANDIDATURE</span>
+                    <span class="btn-icon">→</span>
+                    <div class="btn-glow"></div>
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hologram-container">
+                <div class="hologram-ring ring-1"></div>
+                <div class="hologram-ring ring-2"></div>
+                <div class="hologram-ring ring-3"></div>
+                <div class="hologram-core">
+                    <svg viewBox="0 0 120 120" class="imperial-emblem">
+                        <circle cx="60" cy="60" r="55" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                        <circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+                        <circle cx="60" cy="60" r="15" fill="currentColor" opacity="0.8"/>
+                        <line x1="60" y1="5" x2="60" y2="45" stroke="currentColor" stroke-width="3"/>
+                        <line x1="60" y1="75" x2="60" y2="115" stroke="currentColor" stroke-width="3"/>
+                        <line x1="5" y1="60" x2="45" y2="60" stroke="currentColor" stroke-width="3"/>
+                        <line x1="75" y1="60" x2="115" y2="60" stroke="currentColor" stroke-width="3"/>
+                        <line x1="18" y1="18" x2="45" y2="45" stroke="currentColor" stroke-width="2"/>
+                        <line x1="75" y1="75" x2="102" y2="102" stroke="currentColor" stroke-width="2"/>
+                        <line x1="102" y1="18" x2="75" y2="45" stroke="currentColor" stroke-width="2"/>
+                        <line x1="45" y1="75" x2="18" y2="102" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>SCROLL</span>
+        </div>
+    </section>
+
+    <!-- About Me Quick Section -->
+    <section class="values-section">
+        <div class="section-container">
+            <div class="section-header" data-aos>
+                <span class="section-tag">QUI SUIS-JE</span>
+                <h2 class="section-title">EN QUELQUES <span class="accent">MOTS</span></h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-card" data-aos>
+                    <div class="value-number">01</div>
+                    <h3>Passionné</h3>
+                    <p>Fan de Star Wars depuis toujours, je vis et respire l'univers galactique. Le RP est ma passion.</p>
+                    <div class="value-line"></div>
+                </div>
+                <div class="value-card" data-aos>
+                    <div class="value-number">02</div>
+                    <h3>Disponible</h3>
+                    <p>Tout le temps disponible pour contribuer à l'équipe et aux projets.</p>
+                    <div class="value-line"></div>
+                </div>
+                <div class="value-card" data-aos>
+                    <div class="value-number">03</div>
+                    <h3>Mature</h3>
+                    <p>Capable de gérer les conflits avec calme et objectivité. Je sais prendre du recul dans les situations tendues.</p>
+                    <div class="value-line"></div>
+                </div>
+                <div class="value-card" data-aos>
+                    <div class="value-number">04</div>
+                    <h3>Engagé</h3>
+                    <p>Je veux voir Empire RP grandir et prospérer. Rejoindre le staff est la prochaine étape logique pour moi.</p>
+                    <div class="value-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-bg-effects">
+            <div class="cta-grid-lines"></div>
+        </div>
+        <div class="section-container">
+            <div class="cta-content" data-aos>
+                <h2 class="cta-title">DÉCOUVRIR <span class="accent">MA CANDIDATURE</span></h2>
+                <p class="cta-desc">Envie d'en savoir plus sur mon parcours et mes motivations ? Tout est détaillé dans ma candidature complète.</p>
+                <a href="candidature.html" class="btn-imperial large">
+                    <span class="btn-text">LIRE MA CANDIDATURE</span>
+                    <span class="btn-icon">→</span>
+                    <div class="btn-glow"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <div class="logo-hex small">
+                            <svg viewBox="0 0 60 60" class="imperial-logo">
+                                <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                                <line x1="30" y1="2" x2="30" y2="22" stroke="currentColor" stroke-width="2"/>
+                                <line x1="30" y1="38" x2="30" y2="58" stroke="currentColor" stroke-width="2"/>
+                                <line x1="2" y1="30" x2="22" y2="30" stroke="currentColor" stroke-width="2"/>
+                                <line x1="38" y1="30" x2="58" y2="30" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">EMPIRE <span class="rp-accent">RP</span></span>
+                    </div>
+                    <p class="footer-tagline">Candidature Staff — [Liseria]</p>
+                </div>
+                <div class="footer-links-group">
+                    <h4>NAVIGATION</h4>
+                    <a href="index.html">Accueil</a>
+                    <a href="candidature.html">Ma Candidature</a>
+                </div>
+                <div class="footer-links-group">
+                    <h4>ME CONTACTER</h4>
+                    <a href="#">Discord : [Liseria]</a>
+                    <a href="#">Steam : [Liseria]</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Candidature Staff — Empire RP</span>
+                <span class="footer-quote">"L'Empire apportera la paix et l'ordre à la galaxie."</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/starfield.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

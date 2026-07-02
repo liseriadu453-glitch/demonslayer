@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Candidature — Empire RP</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav-hologram" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-hex">
+                    <svg viewBox="0 0 60 60" class="imperial-logo">
+                        <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                        <line x1="30" y1="2" x2="30" y2="22" stroke="currentColor" stroke-width="2"/>
+                        <line x1="30" y1="38" x2="30" y2="58" stroke="currentColor" stroke-width="2"/>
+                        <line x1="2" y1="30" x2="22" y2="30" stroke="currentColor" stroke-width="2"/>
+                        <line x1="38" y1="30" x2="58" y2="30" stroke="currentColor" stroke-width="2"/>
+                        <line x1="10" y1="10" x2="22" y2="22" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="38" y1="38" x2="50" y2="50" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="50" y1="10" x2="38" y2="22" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="22" y1="38" x2="10" y2="50" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <span class="logo-text">EMPIRE <span class="rp-accent">RP</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-text="ACCUEIL">
+                    <span class="link-inner">ACCUEIL</span>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="candidature.html" class="nav-link cta-link active" data-text="MA CANDIDATURE">
+                    <span class="link-inner">MA CANDIDATURE</span>
+                    <div class="link-glow"></div>
+                    <div class="cta-pulse"></div>
+                </a>
+            </div>
+            <div class="nav-burger" id="burger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="nav-scan-line"></div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="mobile-link">ACCUEIL</a>
+        <a href="about.html" class="mobile-link">MON PARCOURS</a>
+        <a href="candidature.html" class="mobile-link active">MA CANDIDATURE</a>
+    </div>
+
+    <!-- Candidature Hero -->
+    <section class="form-hero">
+        <div class="section-container">
+            <div class="form-hero-content" data-aos>
+                <span class="section-tag">DOSSIER IMPÉRIAL</span>
+                <h1 class="section-title large">MA <span class="accent">CANDIDATURE</span></h1>
+                <p class="about-intro">Voici ma candidature complète pour rejoindre l'équipe staff d'Empire RP. Chaque section détaille qui je suis, mon expérience et mes motivations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Identity Section -->
+    <section class="candidature-section">
+        <div class="section-container">
+            <div class="section-header" data-aos>
+                <span class="section-tag">IDENTIFICATION</span>
+                <h2 class="section-title">FICHE <span class="accent">D'IDENTITÉ</span></h2>
+            </div>
+            <div class="candidature-card" data-aos>
+                <div class="candidature-grid">
+                    <div class="info-item">
+                        <div class="info-label">PSEUDO IN-GAME</div>
+                        <div class="info-value">Liseria</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">PSEUDO DISCORD</div>
+                        <div class="info-value">Liseria</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">ÂGE</div>
+                        <div class="info-value">20 ans</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">STEAM ID</div>
+                        <div class="info-value">STEAM_0:0:450021827</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">GRADE ACTUEL</div>
+                        <div class="info-value">Aucun</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">HEURES SUR GMOD</div>
+                        <div class="info-value">6000+ heures</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">HEURES SUR LE SERVEUR</div>
+                        <div class="info-value">0 heures</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">DISPONIBILITÉS</div>
+                        <div class="info-value">Actuellement disponible tout le temps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="candidature-section">
+        <div class="section-container">
+            <div class="section-header" data-aos>
+                <span class="section-tag">DOSSIER</span>
+                <h2 class="section-title">MON <span class="accent">EXPÉRIENCE</span></h2>
+            </div>
+            <div class="candidature-card" data-aos>
+                <div class="question-block">
+                    <h3 class="question-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="question-icon">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                        Expérience staff précédente
+                    </h3>
+                    <p class="answer-text">J'ai étais staff sur plusieurs serveurs avant de rejoindre votre serveur, également Fondateur de plusieurs Projets qui ont fonctionnés, je sais gérer, animer et développer un serveur GMOD peut importe le type. Les projets SWTOR RP ainsi que DarkRP voir même plusieurs projets MangaRP était autrefois mes passions et ca l'est toujours autant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivation Section -->
+    <section class="candidature-section">
+        <div class="section-container">
+            <div class="section-header" data-aos>
+                <span class="section-tag">MOTIVATION</span>
+                <h2 class="section-title">POURQUOI <span class="accent">MOI</span></h2>
+            </div>
+
+            <div class="candidature-card" data-aos>
+                <div class="question-block">
+                    <h3 class="question-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="question-icon">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        Pourquoi veux-tu rejoindre le staff ?
+                    </h3>
+                    <p class="answer-text">Parce que je ne viens pas pour apprendre le rôle, mais pour l'exercer avec efficacité et passion.
+
+                        Mon parcours sur Garry's Mod m'a permis d'acquérir une vision à 360° de ce qu'est la gestion d'un serveur. Grâce à mes expériences passées, j'apporte avec moi un bagage solide et immédiatement exploitable
+                    
+                        Une expérience de terrain éprouvée : Ayant été staff sur plusieurs serveurs et Fondateur de plusieurs projets à succès, je connais parfaitement les rouages d'une communauté. Je sais gérer les tensions, animer une commu pour la faire vivre, et administrer avec impartialité.
+
+Des compétences polyvalentes : Qu'il s'agisse de modération pure, d'animation de scènes ou du développement technique d'un serveur, je maîtrise l'écosystème GMOD de A à Z, peu importe le mode de jeu.
+
+Une culture GMOD diversifiée : Du DarkRP au MangaRP, en passant par le SWTOR RP, ces univers ne sont pas juste des modes de jeu pour moi, ce sont de véritables passions. Cette culture me permet de m'adapter instantanément aux codes de votre serveur et de comprendre les attentes précises des joueurs.
+
+                    </p>
+                </div>
+            </div>
+
+                <div class="candidature-card" data-aos>
+                <div class="question-block">
+                    <h3 class="question-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="question-icon">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        Motivation
+                    </h3>
+                    <p class="answer-text">Ma motivation à rejoindre votre équipe découle d'une passion intacte pour l'univers de Garry's Mod et d'un désir profond de mettre mon expérience au service de votre projet. Ayant été staff et fondateur de plusieurs serveurs à succès (notamment en DarkRP, SWTOR et MangaRP), je maîtrise toutes les facettes de la gestion d'une communauté, de l'animation au développement. Aujourd'hui, je ne cherche pas simplement un rôle de modérateur, mais l'opportunité de m'investir pleinement dans un projet qui me tient à cœur. Ma polyvalence et mon autonomie me permettront d'être immédiatement opérationnel pour épauler l'équipe, dynamiser le serveur et offrir la meilleure expérience possible aux joueurs.</p>
+                </div>
+            </div>
+
+            <div class="candidature-card" data-aos>
+                <div class="question-block">
+                    <h3 class="question-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="question-icon">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        Qu'est-ce que tu apporterais au serveur ?
+                    </h3>
+                    <p class="answer-text">Une autonomie immédiate et un gain de temps : Grâce à mon passé de Fondateur et de staff, je n'ai pas besoin d'une longue période de formation. Je connais déjà les commandes, les réflexes de modération et la posture à adopter. Je suis opérationnel dès le premier jour.
+                        Une expertise technique et créative : Au-delà de la simple modération, je peux apporter mon aide sur le développement (configuration, gestion des imprévus) et proposer des idées d'animations innovantes. Mon expérience dans le SWTOR RP, DarkRP et MangaRP me permet de diversifier les scènes et de dynamiser le cœur de jeu.
+                        Une gestion de communauté mature et calibrée : Ayant géré des projets à succès, je sais comment fidéliser les joueurs, désamorcer les conflits avec calme et impartialité, et maintenir une ambiance saine sur le serveur comme sur Discord.
+                        De la stabilité et de la rigueur : Je ne vois pas le rôle de staff comme un simple passe-temps, mais comme un engagement. J'apporte avec moi le sérieux d'un ancien gestionnaire de projet, prêt à s'investir sur le long terme pour faire grandir le serveur.
+                    </p>
+                </div>
+            </div>
+
+            <div class="candidature-card" data-aos>
+                <div class="question-block">
+                    <h3 class="question-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="question-icon">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        Situation RP : Un joueur insulte un autre joueur. Que fais-tu ?
+                    </h3>
+                    <p class="answer-text">Imaginons que je sois modérateur, a ce niveau la j'attend que la scène RP se termine je convoque ensuite les deux joueurs pour en discuter, je calme la situation comme je le peux ensuite en fonction des versions je met ou non un avertissement.</p>
+                </div>
+            </div>
+
+            <div class="candidature-card" data-aos>
+                <div class="question-block">
+                    <h3 class="question-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="question-icon">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Quelque chose à ajouter ?
+                    </h3>
+                    <p class="answer-text">Je n'ai pas grand chose a ajouter mis a part que je suis fortement motivé et passionné par le projet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-bg-effects">
+            <div class="cta-grid-lines"></div>
+        </div>
+        <div class="section-container">
+            <div class="cta-content" data-aos>
+                <h2 class="cta-title">MERCI D'AVOIR <span class="accent">LU</span></h2>
+                <p class="cta-desc">J'espère que ma candidature saura vous convaincre. Je reste disponible pour toute question ou entretien complémentaire.</p>
+                <a href="index.html" class="btn-imperial large">
+                    <span class="btn-text">RETOUR À L'ACCUEIL</span>
+                    <span class="btn-icon">→</span>
+                    <div class="btn-glow"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <div class="logo-hex small">
+                            <svg viewBox="0 0 60 60" class="imperial-logo">
+                                <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="30" cy="30" r="8" fill="currentColor"/>
+                                <line x1="30" y1="2" x2="30" y2="22" stroke="currentColor" stroke-width="2"/>
+                                <line x1="30" y1="38" x2="30" y2="58" stroke="currentColor" stroke-width="2"/>
+                                <line x1="2" y1="30" x2="22" y2="30" stroke="currentColor" stroke-width="2"/>
+                                <line x1="38" y1="30" x2="58" y2="30" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">EMPIRE <span class="rp-accent">RP</span></span>
+                    </div>
+                    <p class="footer-tagline">Candidature Staff — [Liseria]</p>
+                </div>
+                <div class="footer-links-group">
+                    <h4>NAVIGATION</h4>
+                    <a href="index.html">Accueil</a>
+                    <a href="candidature.html">Ma Candidature</a>
+                </div>
+                <div class="footer-links-group">
+                    <h4>ME CONTACTER</h4>
+                    <a href="#">Discord : [Liseria]</a>
+                    <a href="#">Steam : [Liseria]</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Candidature Staff — Empire RP</span>
+                <span class="footer-quote">"L'Empire apportera la paix et l'ordre à la galaxie."</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/starfield.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
